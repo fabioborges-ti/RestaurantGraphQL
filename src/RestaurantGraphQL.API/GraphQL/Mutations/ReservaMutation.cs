@@ -10,13 +10,14 @@ namespace RestaurantGraphQL.API.GraphQL.Mutations
         {
             var reserva = new Reserva
             {
-                DataHora = DateTime.Now,
+                DataHora = input.DataHora,
                 NomeCliente = input.NomeCliente,
                 NumeroPessoas = input.NumeroPessoas,
                 Observacoes = input.Observacoes
             };
 
             await repository.Add(reserva);
+
             return reserva;
         }
     }

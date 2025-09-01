@@ -16,7 +16,8 @@ namespace RestaurantGraphQL.API.GraphQL.Mutations
                 CategoriaId = input.CategoriaId
             };
 
-            await repository.Add(menu); // Chamada para o método que salva no banco de dados
+            await repository.Add(menu);
+
             return menu;
         }
     }
