@@ -22,10 +22,10 @@ builder.Services
     .AddMutationType()
         .AddTypeExtension<MenuMutation>()
         .AddTypeExtension<ReservaMutation>()
+        .AddTypeExtension<CategoriaMutation>()
     .AddFiltering()
     .AddSorting()
-    .AddProjections()
-    .AddMutationConventions();
+    .AddProjections();
 
 var app = builder.Build();
 
