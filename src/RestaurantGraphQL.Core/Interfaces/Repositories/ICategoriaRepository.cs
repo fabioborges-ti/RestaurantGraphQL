@@ -7,6 +7,6 @@ public interface ICategoriaRepository
     IQueryable<Categoria> GetAll();
     Task<Categoria?> GetById(int id);
     Task Add(Categoria categoria);
-    Task<bool> Update(Categoria categoria);
+    Task<Categoria?> Update(int id, Categoria categoria);
     Task<bool> Delete(int id);
 }

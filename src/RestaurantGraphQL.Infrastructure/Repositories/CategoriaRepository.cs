@@ -29,18 +29,18 @@ namespace RestaurantGraphQL.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> Update(Categoria categoria)
+        public async Task<Categoria?> Update(int id, Categoria categoria)
         {
-            var existingCategoria = await _context.Categorias.FindAsync(categoria.Id);
+            var existingCategoria = await _context.Categorias.FindAsync(id);
 
             if (existingCategoria == null)
-                return false;
+                return null;
 
             _context.Entry(existingCategoria).CurrentValues.SetValues(categoria);
 
             await _context.SaveChangesAsync();
 
-            return true;
+            return existingCategoria;
         }
 
         public async Task<bool> Delete(int id)
