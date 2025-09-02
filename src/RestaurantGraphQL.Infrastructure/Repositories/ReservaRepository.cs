@@ -36,7 +36,10 @@ namespace RestaurantGraphQL.Infrastructure.Repositories
             if (existingReserva == null)
                 return null;
 
-            _context.Entry(existingReserva).CurrentValues.SetValues(reserva);
+            existingReserva.DataHora = reserva.DataHora;
+            existingReserva.NomeCliente = reserva.NomeCliente;
+            existingReserva.NumeroPessoas = reserva.NumeroPessoas;
+            existingReserva.Observacoes = reserva.Observacoes;
 
             await _context.SaveChangesAsync();
 
