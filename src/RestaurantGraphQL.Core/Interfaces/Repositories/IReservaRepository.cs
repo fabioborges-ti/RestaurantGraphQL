@@ -7,6 +7,6 @@ public interface IReservaRepository
     IQueryable<Reserva> GetAll();
     Task<Reserva?> GetById(int id);
     Task Add(Reserva reserva);
-    Task Update(Reserva reserva);
-    Task Delete(int id);
+    Task<Reserva?> Update(int id, Reserva reserva);
+    Task<bool> Delete(int id);
 }

@@ -29,30 +29,32 @@ namespace RestaurantGraphQL.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task Update(Reserva reserva)
+        public async Task<Reserva?> Update(int id, Reserva reserva)
         {
-            var existingReserva = await _context.Reservas.FindAsync(reserva.Id);
-            if (existingReserva != null)
-            {
-                // Copia os valores das propriedades, exceto a chave primária
-                _context.Entry(existingReserva).CurrentValues.SetValues(reserva);
-                await _context.SaveChangesAsync();
-            }
-            // Opcional: Lançar uma exceção se a reserva não for encontrada
-            // else
-            // {
-            //     throw new Exception("Reserva não encontrada.");
-            // }
+            var existingReserva = await _context.Reservas.FindAsync(id);
+
+            if (existingReserva == null)
+                return null;
+
+            _context.Entry(existingReserva).CurrentValues.SetValues(reserva);
+
+            await _context.SaveChangesAsync();
+
+            return existingReserva;
         }
 
-        public async Task Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             var reserva = await _context.Reservas.FindAsync(id);
-            if (reserva != null)
-            {
-                _context.Reservas.Remove(reserva);
-                await _context.SaveChangesAsync();
-            }
+
+            if (reserva == null)
+                return false;
+
+            _context.Reservas.Remove(reserva);
+
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }
