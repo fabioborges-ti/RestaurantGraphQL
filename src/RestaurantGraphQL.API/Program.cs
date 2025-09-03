@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using RestaurantGraphQL.API.Extensions;
 using RestaurantGraphQL.API.GraphQL.Mutations;
 using RestaurantGraphQL.API.GraphQL.Queries;
-using RestaurantGraphQL.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +34,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     try
     {
-        var context = services.GetRequiredService<AppDbContext>();
+        var context = services.GetRequiredService<GraphQLDbContext>();
         if (context.Database.GetPendingMigrations().Any())
         {
             await context.Database.MigrateAsync();

@@ -1,14 +1,13 @@
 ﻿using RestaurantGraphQL.Core.Interfaces.Repositories;
 using RestaurantGraphQL.Core.Models;
-using RestaurantGraphQL.Infrastructure.Data;
 
 namespace RestaurantGraphQL.Infrastructure.Repositories
 {
     public class CategoriaRepository : ICategoriaRepository
     {
-        private readonly AppDbContext _context;
+        private readonly GraphQLDbContext _context;
 
-        public CategoriaRepository(AppDbContext context)
+        public CategoriaRepository(GraphQLDbContext context)
         {
             _context = context;
         }

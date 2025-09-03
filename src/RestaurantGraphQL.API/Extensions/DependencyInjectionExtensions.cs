@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using RestaurantGraphQL.Core.Interfaces.Repositories;
-using RestaurantGraphQL.Infrastructure.Data;
 using RestaurantGraphQL.Infrastructure.Repositories;
 
 namespace RestaurantGraphQL.API.Extensions
@@ -10,8 +9,8 @@ namespace RestaurantGraphQL.API.Extensions
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(connectionString));
+
+            services.AddDbContext<GraphQLDbContext>(options => options.UseSqlServer(connectionString));
 
             return services;
         }

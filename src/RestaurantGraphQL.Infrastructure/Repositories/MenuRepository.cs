@@ -1,15 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RestaurantGraphQL.Core.Interfaces.Repositories;
 using RestaurantGraphQL.Core.Models;
-using RestaurantGraphQL.Infrastructure.Data;
 
 namespace RestaurantGraphQL.Infrastructure.Repositories;
 
 public class MenuRepository : IMenuRepository
 {
-    private readonly AppDbContext _context;
+    private readonly GraphQLDbContext _context;
 
-    public MenuRepository(AppDbContext context)
+    public MenuRepository(GraphQLDbContext context)
     {
         _context = context;
     }
